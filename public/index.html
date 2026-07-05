@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="bg-slate-950 text-slate-200">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,39 +21,90 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); }
-        .price-up { animation: flash-green 1s ease-out; }
-        .price-down { animation: flash-red 1s ease-out; }
-        @keyframes flash-green { 0% { background-color: rgba(34, 197, 94, 0.4); } 100% { background-color: transparent; } }
-        @keyframes flash-red { 0% { background-color: rgba(239, 68, 68, 0.4); } 100% { background-color: transparent; } }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .price-up {
+            animation: flash-green 1s ease-out;
+        }
+
+        .price-down {
+            animation: flash-red 1s ease-out;
+        }
+
+        @keyframes flash-green {
+            0% {
+                background-color: rgba(34, 197, 94, 0.4);
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        @keyframes flash-red {
+            0% {
+                background-color: rgba(239, 68, 68, 0.4);
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
 
     <!-- Header -->
-    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+    <header
+        class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
         <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+            <div
+                class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.5)]">
                 <i class="fa-solid fa-robot text-white text-xl"></i>
             </div>
             <div>
-                <h1 class="text-xl font-bold text-white tracking-tight">APRA <span class="font-light text-slate-400">Terminal</span></h1>
+                <h1 class="text-xl font-bold text-white tracking-tight">APRA <span
+                        class="font-light text-slate-400">Terminal</span></h1>
                 <p class="text-xs text-slate-500 font-mono">Autonomous Portfolio Risk Auditor</p>
             </div>
         </div>
         <div class="flex items-center space-x-4">
             <div class="flex items-center space-x-2 bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-700">
                 <span class="relative flex h-2.5 w-2.5">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </span>
                 <span class="text-xs font-mono text-emerald-400" id="live-clock">Scanning Markets...</span>
             </div>
@@ -67,7 +119,8 @@
             <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-400 mb-3 flex items-center">
                 <i class="fa-solid fa-crosshairs text-emerald-500 mr-2"></i> Strongest Buy Signal
             </h2>
-            <div id="top-buy-card" class="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 to-slate-900 shadow-[0_0_30px_rgba(16,185,129,0.1)] p-6 md:p-8">
+            <div id="top-buy-card"
+                class="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/40 to-slate-900 shadow-[0_0_30px_rgba(16,185,129,0.1)] p-6 md:p-8">
                 <!-- Fallback/Loading state -->
                 <div id="top-buy-loading" class="animate-pulse flex items-center space-x-4">
                     <div class="h-16 w-16 bg-slate-800 rounded-full"></div>
@@ -78,14 +131,18 @@
                 </div>
 
                 <!-- Dynamic Content injected by JS -->
-                <div id="top-buy-content" class="hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div id="top-buy-content"
+                    class="hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div class="flex-1">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="px-3 py-1 bg-emerald-500 text-slate-950 text-xs font-bold rounded-md tracking-wide animate-pulse">TOP BUY</span>
+                            <span
+                                class="px-3 py-1 bg-emerald-500 text-slate-950 text-xs font-bold rounded-md tracking-wide animate-pulse">TOP
+                                BUY</span>
                             <h3 id="top-ticker" class="text-3xl font-bold text-white tracking-tight">TICKER</h3>
                             <span id="top-price" class="text-xl font-mono text-emerald-400 font-light">₹0.00</span>
                         </div>
-                        <p id="top-reasoning" class="text-slate-300 text-sm leading-relaxed max-w-2xl border-l-2 border-emerald-500 pl-4 py-1">
+                        <p id="top-reasoning"
+                            class="text-slate-300 text-sm leading-relaxed max-w-2xl border-l-2 border-emerald-500 pl-4 py-1">
                             Analyzing market sentiment and macro-economic factors...
                         </p>
                     </div>
@@ -93,7 +150,8 @@
                         <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">AI Risk Factor</div>
                         <div class="flex items-end space-x-2">
                             <span id="top-risk" class="text-4xl font-bold text-white">0.00</span>
-                            <span class="text-emerald-500 text-sm mb-1"><i class="fa-solid fa-arrow-trend-up"></i> Positive Impact</span>
+                            <span class="text-emerald-500 text-sm mb-1"><i class="fa-solid fa-arrow-trend-up"></i>
+                                Positive Impact</span>
                         </div>
                         <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center">
                             <span class="text-xs text-slate-400">Suggested Qty:</span>
@@ -110,11 +168,12 @@
                 <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-400 flex items-center">
                     <i class="fa-solid fa-list text-blue-500 mr-2"></i> Real-Time Portfolio Suggestions
                 </h2>
-                <button onclick="refreshData()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-md transition flex items-center border border-slate-700">
+                <button onclick="refreshData()"
+                    class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-md transition flex items-center border border-slate-700">
                     <i class="fa-solid fa-arrows-rotate mr-1.5"></i> Force Sync
                 </button>
             </div>
-            
+
             <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm whitespace-nowrap">
@@ -122,10 +181,14 @@
                             <tr>
                                 <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider">Action</th>
                                 <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider">Asset</th>
-                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-right">Market Price</th>
-                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-center">Risk Score</th>
-                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-right">Trade Qty</th>
-                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider min-w-[300px]">AI Reasoning</th>
+                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-right">Market
+                                    Price</th>
+                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-center">Risk
+                                    Score</th>
+                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider text-right">Trade
+                                    Qty</th>
+                                <th class="px-6 py-4 font-semibold text-xs uppercase tracking-wider min-w-[300px]">AI
+                                    Reasoning</th>
                             </tr>
                         </thead>
                         <tbody id="suggestions-table" class="divide-y divide-slate-800/50">
@@ -148,14 +211,14 @@
                 if (response.ok) {
                     const data = await response.json();
                     if (Array.isArray(data) && data.length > 0) {
-                        
+
                         // Check if n8n sent the HTML email template instead of raw JSON
                         const firstItem = data[0].json || data[0];
                         if (firstItem && firstItem.htmlBody) {
                             // Magically parse the email HTML back into data!
                             const parser = new DOMParser();
                             const doc = parser.parseFromString(firstItem.htmlBody, 'text/html');
-                            
+
                             // Extract Global Reasoning
                             let reasoning = "Analyzed by APRA AI.";
                             const headings = Array.from(doc.querySelectorAll('h3'));
@@ -179,12 +242,12 @@
                                     };
                                 }
                             }).filter(Boolean);
-                            
+
                         } else {
                             // Standard JSON handling
                             agentData = data.map(item => item.json ? item.json : item);
                         }
-                        
+
                         renderDashboard();
                     }
                 }
@@ -207,12 +270,12 @@
         function renderDashboard() {
             // 1. Find the top buy recommendation (highest positive risk factor)
             const buyRecs = agentData.filter(d => d.action === 'BUY').sort((a, b) => b.riskFactor - a.riskFactor);
-            
+
             if (buyRecs.length > 0) {
                 const topBuy = buyRecs[0];
                 document.getElementById('top-buy-loading').classList.add('hidden');
                 document.getElementById('top-buy-content').classList.remove('hidden');
-                
+
                 document.getElementById('top-ticker').textContent = topBuy.ticker;
                 document.getElementById('top-price').textContent = formatCurrency(topBuy.currentPrice);
                 document.getElementById('top-reasoning').textContent = topBuy.reasoning;
@@ -241,7 +304,7 @@
             sortedData.forEach(item => {
                 let badgeClass = 'bg-slate-800 text-slate-300 border-slate-700'; // HOLD
                 let riskColor = 'text-slate-500';
-                
+
                 if (item.action === 'BUY') {
                     badgeClass = 'bg-emerald-950/50 text-emerald-400 border-emerald-800';
                     riskColor = 'text-emerald-400';
@@ -278,18 +341,18 @@
         // Simulate live market fluctuations for visual flair
         function simulateMarketTicks() {
             const priceCells = document.querySelectorAll('.price-cell');
-            
+
             // Pick a random row to update
             const randomCell = priceCells[Math.floor(Math.random() * priceCells.length)];
             const currentPrice = parseFloat(randomCell.getAttribute('data-price'));
-            
+
             // Fluctuate by -0.2% to +0.2%
-            const changePercent = (Math.random() - 0.5) * 0.004; 
+            const changePercent = (Math.random() - 0.5) * 0.004;
             const newPrice = currentPrice * (1 + changePercent);
-            
+
             randomCell.setAttribute('data-price', newPrice);
             randomCell.textContent = formatCurrency(newPrice);
-            
+
             // Add flash animation
             randomCell.classList.remove('price-up', 'price-down');
             void randomCell.offsetWidth; // trigger reflow
@@ -312,4 +375,5 @@
 
     </script>
 </body>
+
 </html>
